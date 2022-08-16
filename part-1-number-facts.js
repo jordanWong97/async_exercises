@@ -1,6 +1,6 @@
 "use strict";
 
-const BASE_URL = "http://numbersapi.com/"
+const BASE_URL = "http://numbersapi.com/";
 
 async function getFavoriteNumberFact(favNum = 333) {
 
@@ -14,12 +14,14 @@ async function getMultipleNumberFacts(batchNums = "1,2,3,4") {
   console.log(response.data);
 }
 
+
+const BASE_URL = "http://numbersapi.com/";
 const num = 88;
-let response = axios({url: `${BASE_URL}${num}/trivia?json`});
+let response = axios({ url: `${BASE_URL}${num}/trivia?json` });
 
 let fourRandomFacts = await Promise.allSettled(
-                  [response.text, response.text, response.text, response.text,])
+  [response, response, response, response]);
 
-async function getFourFacts() {
-  console.log(fourRandomFacts);
+function getFourFacts() {
+  console.log(fourRandomFacts.map(res => res.value.data.text));
 }
